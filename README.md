@@ -1,55 +1,63 @@
 # Minishell
-📍 Overview
+
+## 📍 Overview
+
 A project that involves implementing a simplified version of the UNIX shell (bash/sh). It teaches process management, file I/O redirection, command parsing, and system-level programming.
 
-🎯 Objectives
-Implement a functional shell interpreter
-Parse and execute user commands
-Handle process creation and management (fork, execve)
-Implement I/O redirection (>, >>, <, <<)
-Parse command pipelines (|)
-Implement built-in shell commands
-Handle environment variables
-Manage signals properly
-🛠️ Features
-Core Shell Features
-Command Execution:
+## 🎯 Objectives
 
-Parse and execute external commands
-Search for executables in $PATH
-Handle arguments and quotes
-Support for absolute and relative paths
-Built-in Commands:
+- Implement a functional shell interpreter
+- Parse and execute user commands
+- Handle process creation and management (`fork`, `execve`)
+- Implement I/O redirection (`>`, `>>`, `<`, `<<`)
+- Parse command pipelines (`|`)
+- Implement built-in shell commands
+- Handle environment variables
+- Manage signals properly
 
-echo - Print text with optional -n flag
-cd - Change directory with support for -, old $PWD
-pwd - Print working directory
-export - Set environment variables
-unset - Remove environment variables
-env - Display environment variables
-exit - Exit the shell with optional status code
-I/O Redirection:
+## 🛠️ Features
 
-> - Output redirection (truncate file)
->> - Output redirection (append to file)
-< - Input redirection (read from file)
-<< - Here-document (heredoc) support
-Piping:
+### Core Shell Features
 
-| - Connect command output to next command input
-Support for multiple pipes
-Variable Expansion:
+- **Command Execution:**
+  - Parse and execute external commands
+  - Search for executables in `$PATH`
+  - Handle arguments and quotes
+  - Support for absolute and relative paths
 
-$VAR - Expand environment variables
-$? - Last command exit status
-${VAR} - Extended variable syntax
-Quote handling (', ")
-Signal Handling:
+- **Built-in Commands:**
+  - `echo` - Print text with optional `-n` flag
+  - `cd` - Change directory with support for `-`, old `$PWD`
+  - `pwd` - Print working directory
+  - `export` - Set environment variables
+  - `unset` - Remove environment variables
+  - `env` - Display environment variables
+  - `exit` - Exit the shell with optional status code
 
-Ctrl+C - Interrupt command (SIGINT)
-Ctrl+D - Exit shell (EOF)
-Ctrl+\ - Quit (SIGQUIT)
-📦 Project Structure
+- **I/O Redirection:**
+  - `>` - Output redirection (truncate file)
+  - `>>` - Output redirection (append to file)
+  - `<` - Input redirection (read from file)
+  - `<<` - Here-document (heredoc) support
+
+- **Piping:**
+  - `|` - Connect command output to next command input
+  - Support for multiple pipes
+
+- **Variable Expansion:**
+  - `$VAR` - Expand environment variables
+  - `$?` - Last command exit status
+  - `${VAR}` - Extended variable syntax
+  - Quote handling (`'`, `"`)
+
+- **Signal Handling:**
+  - `Ctrl+C` - Interrupt command (SIGINT)
+  - `Ctrl+D` - Exit shell (EOF)
+  - `Ctrl+\` - Quit (SIGQUIT)
+
+## 📦 Project Structure
+
+```
 minishell/
 ├── Makefile              # Build automation
 ├── README.md
@@ -106,19 +114,32 @@ minishell/
 │   ├── gnl/              # Get next line
 │   └── Makefile
 └── objects/              # Compiled object files (generated)
-🚀 Compilation & Execution
-Compilation
+```
+
+## 🚀 Compilation & Execution
+
+### Compilation
+
+```bash
 make              # Compile the shell
 make clean        # Remove object files
 make fclean       # Remove all generated files
 make re           # Full rebuild
-Creates executable: minishell
+```
 
-Running the Shell
+Creates executable: `minishell`
+
+### Running the Shell
+
+```bash
 ./minishell
+```
+
 The shell prompt will appear and wait for commands.
 
-Examples
+### Examples
+
+```bash
 $ echo "Hello World"
 Hello World
 
@@ -139,8 +160,13 @@ $ pwd
 /home/user
 
 $ exit 0
-⌨️ Command Examples
-Basic Commands
+```
+
+## ⌨️ Command Examples
+
+### Basic Commands
+
+```bash
 # Echo command
 $ echo hello world
 hello world
@@ -154,7 +180,11 @@ $ ls -la
 
 # Print working directory
 $ pwd
-Environment Variables
+```
+
+### Environment Variables
+
+```bash
 # View all environment variables
 $ env
 
@@ -170,7 +200,11 @@ $ unset MY_VAR
 # Check last command status
 $ echo $?
 0
-I/O Redirection
+```
+
+### I/O Redirection
+
+```bash
 # Redirect output to file (truncate)
 $ echo "hello" > file.txt
 
@@ -186,7 +220,11 @@ This is a
 multi-line
 input
 EOF
-Piping
+```
+
+### Piping
+
+```bash
 # Simple pipe
 $ ls -l | grep ".c"
 
@@ -195,52 +233,66 @@ $ cat file.txt | grep "pattern" | wc -l
 
 # Redirect at the end
 $ ps aux | grep minishell > processes.txt
-🔑 Key Concepts
-Process Management
-fork() - Create child process
-execve() - Execute command
-wait() / waitpid() - Wait for child process
-exit() - Terminate process
-File I/O
-open() - Open file descriptor
-close() - Close file descriptor
-dup2() - Redirect file descriptors
-read() / write() - File operations
-Signal Handling
-signal() / sigaction() - Set signal handlers
-SIGINT - Ctrl+C interrupt
-SIGQUIT - Ctrl+\ quit
-SIGCHLD - Child process termination
-Tokenization & Parsing
-Lexical analysis - Break input into tokens
-Syntax analysis - Validate command structure
-Quote handling - Single and double quotes
-Variable expansion - $VAR substitution
-Shell Features
-Built-in commands - Implemented internally
-External commands - Executed via execve
-Redirections - Input/output redirection
-Pipes - Inter-process communication
-📚 Learning Points
-Understanding the Unix shell design
-Process creation and management
-File descriptor manipulation
-Signal handling and interrupts
-Parsing and tokenization
-Environment variable management
-Standard I/O redirection
-Command pipeline architecture
-🛡️ Error Handling
-The shell handles:
+```
 
-Invalid commands with appropriate error messages
-File not found errors
-Permission denied errors
-Invalid redirections
-Broken pipes
-Syntax errors
-🧪 Testing
-Test Various Features
+## 🔑 Key Concepts
+
+### Process Management
+- **fork()** - Create child process
+- **execve()** - Execute command
+- **wait()** / **waitpid()** - Wait for child process
+- **exit()** - Terminate process
+
+### File I/O
+- **open()** - Open file descriptor
+- **close()** - Close file descriptor
+- **dup2()** - Redirect file descriptors
+- **read()** / **write()** - File operations
+
+### Signal Handling
+- **signal()** / **sigaction()** - Set signal handlers
+- **SIGINT** - Ctrl+C interrupt
+- **SIGQUIT** - Ctrl+\ quit
+- **SIGCHLD** - Child process termination
+
+### Tokenization & Parsing
+- **Lexical analysis** - Break input into tokens
+- **Syntax analysis** - Validate command structure
+- **Quote handling** - Single and double quotes
+- **Variable expansion** - $VAR substitution
+
+### Shell Features
+- **Built-in commands** - Implemented internally
+- **External commands** - Executed via execve
+- **Redirections** - Input/output redirection
+- **Pipes** - Inter-process communication
+
+## 📚 Learning Points
+
+- Understanding the Unix shell design
+- Process creation and management
+- File descriptor manipulation
+- Signal handling and interrupts
+- Parsing and tokenization
+- Environment variable management
+- Standard I/O redirection
+- Command pipeline architecture
+
+## 🛡️ Error Handling
+
+The shell handles:
+- Invalid commands with appropriate error messages
+- File not found errors
+- Permission denied errors
+- Invalid redirections
+- Broken pipes
+- Syntax errors
+
+## 🧪 Testing
+
+### Test Various Features
+
+```bash
 # Test redirections
 ./minishell
 $ echo "test" > file.txt
@@ -264,26 +316,39 @@ $ cat << EOL
 $ cd ..
 $ pwd
 $ cd -
-⚠️ Notes
-Implements a subset of bash functionality
-All code follows 42 Norm standards
-Proper memory management required
-Handles edge cases and error conditions
-Supports both interactive and non-interactive modes
-🔧 Compilation Details
+```
+
+## ⚠️ Notes
+
+- Implements a subset of bash functionality
+- All code follows 42 Norm standards
+- Proper memory management required
+- Handles edge cases and error conditions
+- Supports both interactive and non-interactive modes
+
+## 🔧 Compilation Details
+
+```bash
 make              # Standard compilation
 make clean        # Remove .o files
 make fclean       # Remove executables and objects
 make re           # Clean and rebuild all
-Compiler Flags
-Usually compiled with:
+```
 
+### Compiler Flags
+
+Usually compiled with:
+```bash
 gcc -Wall -Wextra -Werror -I./inc src/*.c libs/libft/libft.a -lreadline -o minishell
-📊 Main Components
-Component	Files	Purpose
-Tokenization	tokens/	Parse input into tokens
-Expansion	expand/	Variable and token expansion
-Redirection	redirs/	Handle I/O redirection
-Execution	exec/	Execute parsed commands
-Built-ins	builtins/	Implement shell built-ins
-Utilities	utils/	Helper functions & env mgmt
+```
+
+## 📊 Main Components
+
+| Component | Files | Purpose |
+|-----------|-------|---------|
+| Tokenization | `tokens/` | Parse input into tokens |
+| Expansion | `expand/` | Variable and token expansion |
+| Redirection | `redirs/` | Handle I/O redirection |
+| Execution | `exec/` | Execute parsed commands |
+| Built-ins | `builtins/` | Implement shell built-ins |
+| Utilities | `utils/` | Helper functions & env mgmt |
