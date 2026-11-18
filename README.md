@@ -1,4 +1,4 @@
-🐚 Minishell
+# Minishell
 📍 Overview
 A project that involves implementing a simplified version of the UNIX shell (bash/sh). It teaches process management, file I/O redirection, command parsing, and system-level programming.
 
